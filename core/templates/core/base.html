@@ -10,9 +10,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>SongOfTheDay</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'core/style.css' %}">
 </head>
 <body>
-{% block main %}{% endblock %}
+    <div id="main" class="container">
+        <br>
+        <ul class="nav nav-pills justify-content-center" _="on click take .active from .nav-link for event.target">
+            <li class="nav-item">
+                <a class="nav-link active" hx-get="{% url 'index' %}" hx-target="#content">Index</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" hx-get="{% url 'playlist' %}" hx-target="#content">Playlist</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" hx-get="{% url 'equipment' %}" hx-target="#content">Equipment</a>
+            </li>
+        </ul>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div id="content" hx-get="{% url 'index' %}" hx-swap="innerHTML" hx-trigger="load"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/htmx.org@1.6.0" integrity="sha384-G4dtlRlMBrk5fEiRXDsLjriPo8Qk5ZeHVVxS8KhX6D7I9XXJlNqbdvRlp9/glk5D" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/hyperscript.org@0.8.2"></script>
 </body>
 </html>
